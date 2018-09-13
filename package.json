@@ -1,0 +1,20 @@
+{
+  "name": "test-mdx-deck",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "presentation-npm": "mdx-deck npm.mdx",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mdx-deck": "^1.7.3",
+    "raw-loader": "^0.5.1"
+  },
+  "dependencies": {
+    "mdx-deck-code-surfer": "^0.4.1"
+  }
+}
