@@ -7,11 +7,7 @@
     "start": "webpack",
     "presentation-npm": "mdx-deck npm.mdx"
   },
-  "bin": {
-    "weather-cwi": "./index.js",
-    "tafriolafora": "./index.js"
-  },
-  "keywords": ["dojo", "node", "weather", "cwi"],
+  "keywords": ["dojo", "node"],
   "author": "CWI Software",
   "license": "ISC",
   "devDependencies": {
