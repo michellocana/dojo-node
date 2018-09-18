@@ -1,7 +1,7 @@
 const HardCodedPromise = function(callback) {
-  const result = null
-  const didResolve = false
-  const didReject = false
+  let result = null
+  let didResolve = false
+  let didReject = false
 
   const resolve = (data) => {
     result = data
