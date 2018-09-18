@@ -1,0 +1,134 @@
+export { future as theme } from 'mdx-deck/themes'
+
+import { Split } from 'mdx-deck/layouts'
+
+import { Appear, Notes } from 'mdx-deck'
+
+import { CodeSurfer } from 'mdx-deck-code-surfer'
+
+# Promises
+
+---
+
+## JS é single thread
+
+Na mesma thread que seu código javascript roda, tem muito mais coisa acontecendo
+
+---
+
+* Painting 
+* Atualização de styles da página
+* Manipulação de interação do usuário
+* (Meu código)
+
+```notes
+A execução do nosso código fica o tempo todo em concorrência com processos do próprio navegador.
+
+Interações como seleção de texto, ou interações com form controls, etc, rodam tudo na mesma thread.
+
+```
+
+---
+
+Antes de um método ser executado ele entra numa fila, e só será executado quando chegar sua vez na fila.
+
+---
+
+O browser fica infinitamente atualizando a fila com novas mensagens. 
+Esse processo se chama [event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop), 
+
+![Event loop](https://mdn.mozillademos.org/files/4617/default.svg)
+
+```notes
+No conceito de event loop, métodos são frequentemente chamados de mensagens (messages).
+```
+
+---
+
+## O problema
+
+Com esse modelo de concorrência, fica impossível a execução de código assíncrono
+
+```notes
+Por que toda mensagem tem que esperar a próxima pra iniciar a execução
+```
+
+---
+
+## A solução
+[Promises](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
+---
+
+<CodeSurfer
+  title="Exemplo"
+  code={require("raw-loader!./snippets/promises/promise.jsx")}
+/>
+
+---
+
+<CodeSurfer
+  title="Promise.all"
+  code={require("raw-loader!./snippets/promises/promiseAll.jsx")}
+/>
+
+---
+
+<CodeSurfer
+  title="Promise.race"
+  code={require("raw-loader!./snippets/promises/promiseRace.jsx")}
+/>
+
+---
+
+## Outros métodos
+
+* Promise.reject(reason)
+* Promise.resolve(reason)
+
+```notes
+Retorna uma promise já resolved ou rejected
+```
+
+---
+
+<CodeSurfer
+  title="Under the hood"
+  code={require("raw-loader!./snippets/promises/hardcodedpromise.jsx")}
+  steps={[
+    { lines: [1] },
+    { range: [2, 4], notes: "Flags" },
+    { range: [6, 14], notes: "Métodos que atualizam as flags" },
+    { range: [16, 34], notes: "Método que fica continuamente checando o estado da Promise" },
+    { range: [18, 26] },
+    { range: [26, 30] },
+    { range: [30, 32] },
+    { range: [36, 57], notes: "Retorno" },
+    { lines: [37], notes: "Executando callback que foi passada" },
+    { range: [40, 50], notes: "Retornando handler de sucesso com nova Promise"},
+    { range: [52, 55], notes: "Retornando handler de erro" }
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  title="Quiz"
+  code={require("raw-loader!./snippets/promises/quiz.jsx")}
+/>
+
+---
+
+Resposta: 
+
+* ```1, 2, p1, p2```
+
+---
+
+## Referências
+
+* [Promise - MDN Docs](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* [Chrome Promise Announcement](https://developers.google.com/web/fundamentals/primers/promises)
+* [Event Loop](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/EventLoop)
+* [HardCodedPromise](https://gist.github.com/michellocana/ac29e2fabe5e7b08c61aae65ff96a51e)
+* [Quiz](https://twitter.com/jaffathecake/status/954653170986311680)

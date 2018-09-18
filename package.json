@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build-npm": "mdx-deck build npm.mdx --no-html --out-dir presentation/npm",
+    "build-promises": "mdx-deck build promises.mdx --no-html --out-dir presentation/promises",
     "presentation-npm": "mdx-deck npm.mdx",
-    "presentation-npm": "mdx-deck promises.mdx",
+    "presentation-promises": "mdx-deck promises.mdx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
