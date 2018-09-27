@@ -1,0 +1,11 @@
+// ❌
+function() { }()
+
+// ✅
+(function() { })()
+
+// ✅
+!function() { }()
+
+// ✅
+;(function() { })()
