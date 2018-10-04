@@ -1,0 +1,289 @@
+export { future as theme } from 'mdx-deck/themes'
+
+import { Appear } from 'mdx-deck'
+
+import { CodeSurfer } from 'mdx-deck-code-surfer'
+
+# Gotchas
+
+---
+
+## what is this
+
+O valor de ```this``` é referente ao "owner" do método em que ele está sendo chamado
+
+```notes
+O owner pode ser um object ou uma function
+```
+
+---
+
+<CodeSurfer
+  code={require("raw-loader!./snippets/gotchas/this.jsx")}
+/>
+
+---
+
+<CodeSurfer
+  code={require("raw-loader!./snippets/gotchas/eventListener.jsx")}
+/>
+
+```notes
+Chamando esse método com "new" cria um escopo para "this", e chamando sem, não cria.
+```
+
+---
+
+<CodeSurfer
+  code={require("raw-loader!./snippets/gotchas/eventListener2.jsx")}
+/>
+
+```notes
+O método bind permite que seja especificado o escopo do this
+```
+
+---
+
+<CodeSurfer
+  code={require("raw-loader!./snippets/gotchas/eventListener3.jsx")}
+/>
+
+```notes
+Arrow functions tem "lexical this", ou seja, pegam sempre o escopo do método pai
+```
+
+---
+
+<CodeSurfer
+  title="Escopo"
+  code={require("raw-loader!./snippets/gotchas/scope.jsx")}
+/>
+
+```notes
+Por padrão, quando se usa var, a variável fica ligada ao escopo do método.
+```
+
+---
+
+## Hoisting
+
+Quando uma variável é definida, a declaração dela vai para o topo do escopo
+
+---
+
+<CodeSurfer
+  title="Hoisting"
+  code={require("raw-loader!./snippets/gotchas/hoisting.jsx")}
+/>
+
+```notes
+Não dá erro em "a" por que essa variável vai pro topo do escopo com valor undefined
+```
+
+---
+
+<CodeSurfer
+  title="Hoisting"
+  code={require("raw-loader!./snippets/gotchas/hoisting2.jsx")}
+/>
+
+```notes
+Declarando um método dessa forma já define o valor dele, e com hoisting, ele pode ser usado antes de ser declarado
+```
+
+---
+
+<CodeSurfer
+  title="Self Invoking Function (IIFE)"
+  code={require("raw-loader!./snippets/gotchas/iife.jsx")}
+/>
+
+```notes
+Bastante usadas para criar escopos
+Explicar o uso do ponto e vírgula no último exemplo
+```
+
+---
+
+<CodeSurfer
+  title="Weird syntax - Double tilde"
+  code={require("raw-loader!./snippets/gotchas/doubleTilde.jsx")}
+/>
+
+```notes
+O nome oficial do operator "~" é "bitwise not operator"
+```
+
+---
+
+<CodeSurfer
+  title="Weird syntax - Expression IF"
+  code={require("raw-loader!./snippets/gotchas/expressionIf.jsx")}
+  steps={[
+    { range: [1, 9] },
+    { range: [11, 17] }
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  title="String -> Number"
+  code={require("raw-loader!./snippets/gotchas/stringToNumber.jsx")}
+  steps={[
+    { range: [3, 4] },
+    { lines: [6] },
+    { range: [8, 10] },
+    { range: [12, 16] },
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  title="Boolean casting"
+  code={require("raw-loader!./snippets/gotchas/booleanCasting.jsx")}
+/>
+
+---
+
+## Boolean casting - Falsy values
+* ```false```
+* ```0```
+* ```''```
+* ```null```
+* ```undefined```
+* ```NaN```
+
+---
+
+## Boolean casting - Truthy values
+* Todo o resto `¯\\_(ツ)_/¯`
+
+---
+
+<CodeSurfer
+  title="[] is equal to ![]"
+  code={require("raw-loader!./snippets/gotchas/arrayEqualNotArray.jsx")}
+  steps={[
+    { lines: [1] },
+    { lines: [3] },
+    { lines: [4] },
+    { lines: [5] },
+    { lines: [6] },
+  ]}
+/>
+
+```notes
+Abstract equality (==) transforma os dois lados em números antes de comparar
+Cada lado da comparação retorna false por motivos diferentes
+```
+---
+
+<CodeSurfer
+  title="String comparison"
+  code={require("raw-loader!./snippets/gotchas/stringComparison.jsx")}
+  steps={[
+    { range: [1, 2] },
+    { range: [4, 6] }
+  ]}
+/>
+
+```notes
+Se os dois valores são strings, os valores são comparados pela ordem alfabética.
+Se um dos valores é number, o outro valor é convertido pra number antes de ser comparado.
+Comentar do último exemplo, comparação de versões.
+```
+---
+
+<CodeSurfer
+  title="Tricky numbers"
+  code={require("raw-loader!./snippets/gotchas/trickyNumbers.jsx")}
+  steps={[
+    { range: [1, 3] },
+    { lines: [5] },
+    { lines: [7] },
+    { range: [9, 10] }
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  title="NaN"
+  code={require("raw-loader!./snippets/gotchas/nan.jsx")}
+/>
+
+```notes
+É usado para 3 tipos de operações matemáticas:
+1. Operações com um NaN em um dos operandos
+2. Operações impossíveis de calcular
+3. Operações reais com resultados complexos
+```
+---
+
+<CodeSurfer
+  title="NaN is not NaN"
+  code={require("raw-loader!./snippets/gotchas/nanNotNan.jsx")}
+/>
+
+---
+
+<CodeSurfer
+  title="Circular JSON"
+  code={require("raw-loader!./snippets/gotchas/circularJson.jsx")}
+/>
+
+```notes
+É quando em algum lugar do json ele referencia ele mesmo.
+É mais comuns em frameworks, como angular.
+```
+---
+
+<CodeSurfer
+  title="Tricky arrow functions"
+  code={require("raw-loader!./snippets/gotchas/trickyArrowFunctions.jsx")}
+  steps={[
+    { range: [1, 2] },
+    { range: [4, 5] },
+    { range: [7, 8] },
+  ]}
+/>
+
+```notes
+"{}" é interpretado como um bloco de código e não como um object
+```
+---
+
+<CodeSurfer
+  title="HTML comments in JS"
+  code={require("raw-loader!./snippets/gotchas/htmlCommentsInJs.jsx")}
+/>
+
+```notes
+Quando JS e CSS não eram um padrão pra web, os devs usavam comentários HTML
+no meio do script pra browsers que não aceitassem essas linguagens.
+
+http://micromega.com.br/
+```
+---
+
+## Chrome Console API
+
+* ```console.table```
+* ```console.count```
+* ```console.time```
+* ```console.timeEnd```
+* ```copy```
+
+---
+
+### Referências
+
+* [Value of this](https://www.w3schools.com/js/js_this.asp)
+* [Hoisting](http://loopinfinito.com.br/2014/10/29/hoisting-e-escopo-em-javascript/)
+* [IIFE](https://stackoverflow.com/questions/3755606/what-does-the-exclamation-mark-do-before-the-function)
+* [wtfjs](https://github.com/denysdovhan/wtfjs)
+* [Truthy/Falsy values](http://adripofjavascript.com/blog/drips/truthy-and-falsy-values-in-javascript.html)
+* [NaN is not NaN](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
+* [Chrome Console API](https://developers.google.com/web/tools/chrome-devtools)
