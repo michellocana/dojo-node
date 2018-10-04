@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-gotchas": "mdx-deck build npm.mdx --no-html --out-dir presentation/gotchas",
+    "build-gotchas": "mdx-deck build gotchas.mdx --no-html --out-dir presentation/gotchas",
     "build-npm": "mdx-deck build npm.mdx --no-html --out-dir presentation/npm",
     "build-promises": "mdx-deck build promises.mdx --no-html --out-dir presentation/promises",
     "presentation-gotchas": "mdx-deck gotchas.mdx",
