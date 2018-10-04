@@ -180,6 +180,103 @@ Cada lado da comparação retorna false por motivos diferentes
 ```
 ---
 
+<CodeSurfer
+  title="String comparison"
+  code={require("raw-loader!./snippets/gotchas/stringComparison.jsx")}
+  steps={[
+    { range: [1, 2] },
+    { range: [4, 6] }
+  ]}
+/>
+
+```notes
+Se os dois valores são strings, os valores são comparados pela ordem alfabética.
+Se um dos valores é number, o outro valor é convertido pra number antes de ser comparado.
+Comentar do último exemplo, comparação de versões.
+```
+---
+
+<CodeSurfer
+  title="Tricky numbers"
+  code={require("raw-loader!./snippets/gotchas/trickyNumbers.jsx")}
+  steps={[
+    { range: [1, 3] },
+    { lines: [5] },
+    { lines: [7] },
+    { range: [9, 10] }
+  ]}
+/>
+
+---
+
+<CodeSurfer
+  title="NaN"
+  code={require("raw-loader!./snippets/gotchas/nan.jsx")}
+/>
+
+```notes
+É usado para 3 tipos de operações matemáticas:
+1. Operações com um NaN em um dos operandos
+2. Operações impossíveis de calcular
+3. Operações reais com resultados complexos
+```
+---
+
+<CodeSurfer
+  title="NaN is not NaN"
+  code={require("raw-loader!./snippets/gotchas/nanNotNan.jsx")}
+/>
+
+---
+
+<CodeSurfer
+  title="Circular JSON"
+  code={require("raw-loader!./snippets/gotchas/circularJson.jsx")}
+/>
+
+```notes
+É quando em algum lugar do json ele referencia ele mesmo.
+É mais comuns em frameworks, como angular.
+```
+---
+
+<CodeSurfer
+  title="Tricky arrow functions"
+  code={require("raw-loader!./snippets/gotchas/trickyArrowFunctions.jsx")}
+  steps={[
+    { range: [1, 2] },
+    { range: [4, 5] },
+    { range: [7, 8] },
+  ]}
+/>
+
+```notes
+"{}" é interpretado como um bloco de código e não como um object
+```
+---
+
+<CodeSurfer
+  title="HTML comments in JS"
+  code={require("raw-loader!./snippets/gotchas/htmlCommentsInJs.jsx")}
+/>
+
+```notes
+Quando JS e CSS não eram um padrão pra web, os devs usavam comentários HTML
+no meio do script pra browsers que não aceitassem essas linguagens.
+
+http://micromega.com.br/
+```
+---
+
+## Chrome Console API
+
+* ```console.table```
+* ```console.count```
+* ```console.time```
+* ```console.timeEnd```
+* ```copy```
+
+---
 
 ### Referências
 
@@ -188,3 +285,5 @@ Cada lado da comparação retorna false por motivos diferentes
 * [IIFE](https://stackoverflow.com/questions/3755606/what-does-the-exclamation-mark-do-before-the-function)
 * [wtfjs](https://github.com/denysdovhan/wtfjs)
 * [Truthy/Falsy values](http://adripofjavascript.com/blog/drips/truthy-and-falsy-values-in-javascript.html)
+* [NaN is not NaN](https://www.ecma-international.org/ecma-262/#sec-strict-equality-comparison)
+* [Chrome Console API](https://developers.google.com/web/tools/chrome-devtools)
